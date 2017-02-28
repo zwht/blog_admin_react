@@ -1,6 +1,8 @@
 var path = require('path');
-var HtmlwebpackPlugin = require('html-webpack-plugin');
+var process = require('process');
 var webpack = require("webpack");
+
+var HtmlwebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var extractLESS = new ExtractTextPlugin('/assets/css/style.css');
 
@@ -75,26 +77,30 @@ var config = {
                 //"css": ["css/style.css"],
                 //"js": ["js/bundle.js"],
                 /*"chunks": {
-                    "head": {
-                        //"entry": "head_bundle.js",
-                        "css": ["css/style.css"]
-                    },
-                    "main": {
-                        //"entry": "main_bundle.js",
-                        "css": []
-                    }
-                }*/
+                 "head": {
+                 //"entry": "head_bundle.js",
+                 "css": ["css/style.css"]
+                 },
+                 "main": {
+                 //"entry": "main_bundle.js",
+                 "css": []
+                 }
+                 }*/
             },
-            showErrors:true,
+            showErrors: true,
             inject: true,
             hash: true
         }),
-        /*new webpack.optimize.UglifyJsPlugin({    //压缩代码
+        new webpack.optimize.UglifyJsPlugin({    //压缩代码
             compress: {
                 warnings: false
             },
+            output: {
+                comments: false  // remove all comments
+            },
             except: ['$super', '$', 'exports', 'require']    //排除关键字
-        })*/
+        })
+
     ]
 };
 
