@@ -1,5 +1,4 @@
 import React from 'react';
-import './Login.less';
 
 class Page404 extends React.Component {
     render() {

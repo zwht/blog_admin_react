@@ -3,8 +3,7 @@
 	src: url('<%= fontPath %><%= fontName %>.eot');
 	src: url('<%= fontPath %><%= fontName %>.eot?time=<%= new Date().getTime() %>#iefix') format('eot'),
 		url('<%= fontPath %><%= fontName %>.woff?time=<%= new Date().getTime() %>') format('woff'),
-		url('<%= fontPath %><%= fontName %>.ttf?time=<%= new Date().getTime() %>') format('truetype'),
-		url('<%= fontPath %><%= fontName %>.svg?time=<%= new Date().getTime() %>#<%= fontName %>') format('svg');
+		url('<%= fontPath %><%= fontName %>.ttf?time=<%= new Date().getTime() %>') format('truetype');
 }
 
 .icon:before {

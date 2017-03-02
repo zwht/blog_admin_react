@@ -25,6 +25,7 @@
   "devDependencies": {
     "babel-preset-react": "^6.16.0",
     "css-loader": "^0.26.1",
+    "file-loader": "^0.10.1",
     "gulp": "^3.9.1",
     "gulp-iconfont": "^8.0.1",
     "gulp-iconfont-css": "^2.1.0",

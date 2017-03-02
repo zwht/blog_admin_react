@@ -4,7 +4,7 @@ var webpack = require("webpack");
 
 var HtmlwebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var extractLESS = new ExtractTextPlugin('/assets/css/style.css');
+var extractLESS = new ExtractTextPlugin('./style.css');
 
 var node_modules_dir = path.join(__dirname, 'node_modules');
 var deps = [
@@ -30,7 +30,8 @@ var config = {
     },
     output: {
         path: path.resolve(__dirname, './build'),
-        filename: '/assets/js/bundle.js'
+        filename: '/assets/js/bundle.js',
+        publicPath: ""
     },
 
     devServer: {
@@ -57,8 +58,24 @@ var config = {
                 }
             },
             {
+                test: /\.css/i,
+                loader: extractLESS.extract(['css'])
+            },
+            {
                 test: /\.less$/i,
                 loader: extractLESS.extract(['css', 'less'])
+            },
+            {
+                test: /\.(png|jpe?g|gif)(\?.*)?$/,
+                loader: 'url?limit=8192&name=assets/images/[name]-[hash:8].[ext]'
+            },
+            {
+                test: /\.(woff|svg|eot|ttf)\??.*$/,
+                loader: 'url',
+                query: {
+                    limit: 10000,
+                    name: 'assets/fonts/[name]-[hash:8].[ext]'
+                }
             }
         ]
 
@@ -91,7 +108,7 @@ var config = {
             inject: true,
             hash: true
         }),
-        new webpack.optimize.UglifyJsPlugin({    //压缩代码
+        /*new webpack.optimize.UglifyJsPlugin({    //压缩代码
             compress: {
                 warnings: false
             },
@@ -99,7 +116,7 @@ var config = {
                 comments: false  // remove all comments
             },
             except: ['$super', '$', 'exports', 'require']    //排除关键字
-        })
+         })*/
 
     ]
 };
