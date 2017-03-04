@@ -1,3 +1,6 @@
+/**
+ * Created by zhaowei on 17/3/4.
+ */
 import React from 'react';
 import './Login.less';
 import imgObj from '../../assets/images/a1.png'

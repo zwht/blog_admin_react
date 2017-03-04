@@ -4,7 +4,7 @@ var webpack = require("webpack");
 
 var HtmlwebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var extractLESS = new ExtractTextPlugin('./style.css');
+var extractLESS = new ExtractTextPlugin('./assets/css/style.css');
 
 var node_modules_dir = path.join(__dirname, 'node_modules');
 var deps = [
@@ -31,7 +31,7 @@ var config = {
     output: {
         path: path.resolve(__dirname, './build'),
         filename: '/assets/js/bundle.js',
-        publicPath: ""
+        publicPath: "http://127.0.0.1:9999/"
     },
 
     devServer: {
@@ -40,8 +40,8 @@ var config = {
         host: '127.0.0.1',
         port: 9999,
         proxy: {
-            '/api': {
-                target: 'https://other-server.example.com',
+            '/rest': {
+                target: 'http://127.0.0.1:8888',
                 secure: false
             }
         }
