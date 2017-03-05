@@ -110,61 +110,54 @@ function parseTime(v) {
 }
 function sessionProvider() {
 
+    var getFn = ifStorage ? getStorageValue : getCookieValue,
+        setFn = ifStorage ? setStorageValue : setCookieValue,
+        deleteFn = ifStorage ? deleteStorageValue : deleteCookieValue;
 
-    this.$get = [sessionGet];
-
-    sessionGet.$inject = [];
-    function sessionGet() {
-
-        var getFn = ifStorage ? getStorageValue : getCookieValue,
-            setFn = ifStorage ? setStorageValue : setCookieValue,
-            deleteFn = ifStorage ? deleteStorageValue : deleteCookieValue;
-
-        /**
-         * 获取session值
-         *
-         * @method get
-         * @param {String} 键值
-         * @return {String} session中存储的字符串
-         */
-        function getValue(name) {
-            return getFn(name);
-        }
-
-        /**
-         * 删除session中存储的值
-         *
-         * @method remove
-         * @param {String} 键值
-         */
-        function deleteValue(name) {
-            if (!angular.isArray(name)) {
-                name = [name];
-            }
-            angular.forEach(name, function (v) {
-                deleteFn(v);
-            });
-        }
-
-        /**
-         * 向session中存储字符串 时间格式支持"seconds minutes hours days weeks",比如 "2 days and 4 hours"
-         *
-         * @method set
-         * @param {String} 键
-         * @param {String} 值
-         * @param {String} 过期时间
-         */
-        function setValue(name, value, time) {
-            setFn(name, value, time);
-        }
-
-
-        return {
-            get: getValue,
-            set: setValue,
-            remove: deleteValue
-        };
+    /**
+     * 获取session值
+     *
+     * @method get
+     * @param {String} 键值
+     * @return {String} session中存储的字符串
+     */
+    function getValue(name) {
+        return getFn(name);
     }
 
+    /**
+     * 删除session中存储的值
+     *
+     * @method remove
+     * @param {String} 键值
+     */
+    function deleteValue(name) {
+        if (!angular.isArray(name)) {
+            name = [name];
+        }
+        angular.forEach(name, function (v) {
+            deleteFn(v);
+        });
+    }
+
+    /**
+     * 向session中存储字符串 时间格式支持"seconds minutes hours days weeks",比如 "2 days and 4 hours"
+     *
+     * @method set
+     * @param {String} 键
+     * @param {String} 值
+     * @param {String} 过期时间
+     */
+    function setValue(name, value, time) {
+        setFn(name, value, time);
+    }
+
+
+    return {
+        get: getValue,
+        set: setValue,
+        remove: deleteValue
+    };
+
 }
-export default sessionProvider;
+export default sessionProvider();
