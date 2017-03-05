@@ -1,6 +1,7 @@
 import React from 'react';
 import './Login.less';
 import imgObj from '../../assets/images/a1.png'
+import queryString from 'query-string';
 
 import 'whatwg-fetch'
 
@@ -8,9 +9,8 @@ class Login extends React.Component {
     constructor() {
         super();
         this.state = {
-            username: 'zw',
-            lastGistUrl: '',
-            key: 2222
+            userName: 'zw',
+            passWord: '123456'
         };
 
         this.handleClick = this.handleClick.bind(this);
@@ -22,7 +22,11 @@ class Login extends React.Component {
 
     componentDidMount() {
         let _this = this;
-        fetch("/rest/admin/login")
+        fetch("/rest/admin/login", {
+            method: "POST",
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: queryString.stringify({userName: _this.state.userName, passWord: _this.state.passWord})
+        })
             .then(function (response) {
                 console.log(response);
                 _this.setState({
@@ -35,17 +39,8 @@ class Login extends React.Component {
     render() {
         return (
             <div className="Login">
-                <p className="icon icon-add"></p>
-                <span onClick={this.handleClick}>{this.state.key}</span>
-                <p className="icon icon-user"></p>
-                <img src={imgObj}></img>
-                Hello World!!!<br />
-                欢迎来到菜鸟教程学习
-                {this.state.username}
-                1111111
-                {this.state.lastGistUrl}
-                333
-                <div className="testImg"></div>
+                <input type="text" value={this.state.userName}/>
+                <input type="password" value={this.state.passWord}/>
             </div>
         );
     }
