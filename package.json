@@ -9,7 +9,6 @@
     "start": "gulp && webpack-dev-server"
   },
   "dependencies": {
-    "md5": "^2.2.1",
     "query-string": "^4.3.2",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",

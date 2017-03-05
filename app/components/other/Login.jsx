@@ -2,7 +2,7 @@ import React from 'react';
 import './Login.less';
 import imgObj from '../../assets/images/a1.png'
 import queryString from 'query-string';
-import md5 from 'md5';
+import session from '../../servers/session.jsx'
 
 import 'whatwg-fetch'
 
@@ -14,6 +14,13 @@ class Login extends React.Component {
             passWord: '',
             checked: false
         };
+        if (session.get('sess')) {
+            this.state = {
+                userName: session.get('userName'),
+                passWord: window.atob(session.get('passWord')),
+                checked: true
+            };
+        }
 
         this.changeUser = this.changeUser.bind(this);
         this.changePwd = this.changePwd.bind(this);
@@ -35,7 +42,9 @@ class Login extends React.Component {
 
     savePassword() {
         if (this.state.checked) {
-
+            session.set('sess', true);
+            session.set('userName', this.state.userName);
+            session.set('passWord', window.btoa(this.state.passWord))
         }
     }
 
@@ -44,19 +53,21 @@ class Login extends React.Component {
         fetch("/rest/admin/login", {
             method: "POST",
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            body: queryString.stringify({userName: _this.state.userName, passWord: md5(_this.state.passWord)})
+            body: queryString.stringify({
+                userName: _this.state.userName,
+                passWord: window.btoa(_this.state.passWord)
+            })
         })
             .then(function (response) {
-                //this.savePassword();
-                _this.setState({
-                    username: 'fuck',
-                    lastGistUrl: '99999'
-                })
+                _this.savePassword();
             });
     }
 
     componentDidMount() {
-
+        //if(session.get('sess')){
+        //    this.setState({userName: (session.get('userName'))});
+        //    this.setState({passWord: (session.get('passWord'))});
+        //}
     }
 
     render() {
@@ -67,11 +78,13 @@ class Login extends React.Component {
                     <div className="messBox">
                         <div className="userName mess">
                             <span className="icon icon-user"></span>
-                            <input className="inputText" placeholder="用户名" onChange={this.changeUser} type="text"/>
+                            <input className="inputText" placeholder="用户名" value={this.state.userName}
+                                   onChange={this.changeUser} type="text"/>
                         </div>
                         <div className="password mess">
                             <span className="icon icon-lock"></span>
-                            <input className="inputText" placeholder="密码" onChange={this.changePwd} type="password"/>
+                            <input className="inputText" placeholder="密码" value={this.state.passWord}
+                                   onChange={this.changePwd} type="password"/>
                         </div>
                         <div className="setPwd clear">
                             <div className={this.state.checked? 'pull-left checked active':'pull-left checked' }
