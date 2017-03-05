@@ -1,6 +1,5 @@
 import React from 'react';
 import './Login.less';
-import imgObj from '../../assets/images/a1.png'
 import queryString from 'query-string';
 import session from '../../servers/session.jsx'
 
@@ -79,12 +78,12 @@ class Login extends React.Component {
                         <div className="userName mess">
                             <span className="icon icon-user"></span>
                             <input className="inputText" placeholder="用户名" value={this.state.userName}
-                                   onChange={this.changeUser} type="text"/>
+                                   onChange={this.changeUser} autocomplete="off" type="text"/>
                         </div>
                         <div className="password mess">
                             <span className="icon icon-lock"></span>
                             <input className="inputText" placeholder="密码" value={this.state.passWord}
-                                   onChange={this.changePwd} type="password"/>
+                                   onChange={this.changePwd} autocomplete="off" type="password"/>
                         </div>
                         <div className="setPwd clear">
                             <div className={this.state.checked? 'pull-left checked active':'pull-left checked' }
