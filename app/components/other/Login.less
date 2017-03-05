@@ -1,8 +1,95 @@
 @import "./../../assets/styles/common";
 .Login{
-  color: #099;
-  .testImg {
-    height: 200px;
-    background-image: url(../../assets/images/logo.png);
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: linear-gradient(to bottom, @color-base1, @color-base2);
+  .loginContent {
+    width: 320px;
+    height: 250px;
+    position: absolute;
+    left: 50%;
+    margin-left: -160px;
+    top: 50%;
+    margin-top: -175px;
+    border-radius: 20px;
+    box-shadow: 0px 7px 10px rgba(0, 0, 0, .5);
+    background-color: rgba(255, 255, 255, .5);
+  }
+  .headImg {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: darken(@white, 10%);
+    top: 0;
+    margin-top: -50px;
+    left: 50%;
+    margin-left: -50px;
+    border: 2px solid @white
+  }
+  .messBox {
+    width: 270px;
+    margin: 70px auto 0px
+  }
+  .mess {
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    background: #fff;
+    border-radius: 20px;
+  }
+  .userName {
+    margin-bottom: 20px
+  }
+  .password {
+    margin-bottom: 5px;
+  }
+  .icon {
+    font-size: 20px;
+    color: #ffadd6
+  }
+  .names, .pwd {
+    font-size: 14px;
+    color: #ffadd6;
+    width: 45px;
+    display: inline-block
+  }
+  .inputText {
+    border: none;
+    width: 170px;
+  }
+  .icon, .names, .pwd, .inputText {
+    height: 36px;
+    line-height: 36px;
+    vertical-align: top;
+  }
+  .setPwd, .forget {
+    color: #ff3399
+  }
+  .setPwd {
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 10px;
+  }
+  .remeber {
+    color: #ff3399;
+    font-size: 14px
+  }
+  .remeber::before {
+    margin-right: 5px;
+    vertical-align: bottom
+  }
+  .loginBtn {
+    background: #9933cc;
+    color: @white;
+    font-size: 18px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    width: 100%;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    letter-spacing: 10px
   }
 }

@@ -39,8 +39,32 @@ class Login extends React.Component {
     render() {
         return (
             <div className="Login">
-                <input type="text" value={this.state.userName}/>
-                <input type="password" value={this.state.passWord}/>
+                <div className="loginContent">
+                    <div className="headImg"></div>
+                    <div className="messBox">
+                        <div className="userName mess">
+                            <span className="icon icon-user"></span>
+                            <span className="names">用户名</span>
+                            <input className="inputText" type="text"/>
+                        </div>
+                        <div className="password mess">
+                            <span className="icon icon-lock"></span>
+                            <span className="pwd">密码</span>
+                            <input className="inputText" type="text"/>
+                        </div>
+                        <div className="setPwd clear">
+                            <div className="pull-left">
+                                <span className="icon icon-ch remeber">记住密码</span>
+                            </div>
+                            <div className="pull-right">
+                                <a className="forget">忘记密码?</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="loginBtn">
+                        登录
+                    </div>
+                </div>
             </div>
         );
     }
