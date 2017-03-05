@@ -30,7 +30,13 @@
   }
   .messBox {
     width: 270px;
-    margin: 70px auto 0px
+    margin: 70px auto 0px;
+    .userName {
+      margin-bottom: 20px
+    }
+    .password {
+      margin-bottom: 5px;
+    }
   }
   .mess {
     width: 100%;
@@ -38,16 +44,10 @@
     line-height: 36px;
     background: #fff;
     border-radius: 20px;
-  }
-  .userName {
-    margin-bottom: 20px
-  }
-  .password {
-    margin-bottom: 5px;
-  }
-  .icon {
-    font-size: 20px;
-    color: #ffadd6
+    .icon {
+      font-size: 20px;
+      color: lighten(@color-base2, 15%)
+    }
   }
   .names, .pwd {
     font-size: 14px;
@@ -57,31 +57,45 @@
   }
   .inputText {
     border: none;
-    width: 170px;
+    width: 220px;
   }
-  .icon, .names, .pwd, .inputText {
+  .icon, .inputText {
     height: 36px;
     line-height: 36px;
     vertical-align: top;
-  }
-  .setPwd, .forget {
-    color: #ff3399
   }
   .setPwd {
     height: 40px;
     line-height: 40px;
     margin-bottom: 10px;
-  }
-  .remeber {
-    color: #ff3399;
-    font-size: 14px
-  }
-  .remeber::before {
-    margin-right: 5px;
-    vertical-align: bottom
+    color: darken(@color-base2, 5%);
+    .forget {
+      cursor: pointer;
+      color: darken(@color-base2, 5%);
+    }
+    .checked {
+      cursor: pointer;
+      .icon {
+        font-size: 14px;
+        vertical-align: middle;
+        font-weight: bolder;
+        margin-right: 3px;
+      }
+      .icon-ch1 {
+        display: none;
+      }
+      &.active {
+        .icon-ch {
+          display: none
+        }
+        .icon-ch1 {
+          display: inline-block
+        }
+      }
+    }
   }
   .loginBtn {
-    background: #9933cc;
+    background: darken(@color-base2, 30%);
     color: @white;
     font-size: 18px;
     height: 50px;
@@ -90,6 +104,10 @@
     width: 100%;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
-    letter-spacing: 10px
+    letter-spacing: 10px;
+    cursor: pointer;
+    &:hover {
+      background: darken(@color-base2, 25%)
+    }
   }
 }
