@@ -9,7 +9,7 @@ class Login extends React.Component {
     constructor() {
         super();
         this.state = {
-            userName: 'zw',
+            userName: 'myaoyao',
             passWord: '123456'
         };
 
