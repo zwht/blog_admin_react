@@ -8,9 +8,9 @@ class AddUser extends React.Component {
     constructor() {
         super();
         this.state = {
-            userName: 'myaoyao',
-            passWord: '123456',
-            repeatPassWord: "123456"
+            userName: '11',
+            passWord: '6512bd43d9caa6e02c990b0a82652dca',
+            repeatPassWord: "6512bd43d9caa6e02c990b0a82652dca"
         };
     }
 
