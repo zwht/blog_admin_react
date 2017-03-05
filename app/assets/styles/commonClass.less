@@ -1,0 +1,59 @@
+
+.pull-right {
+  float: right;
+}
+
+.pull-left {
+  float: left;
+}
+
+.clear {
+  overflow: auto;
+  zoom: 1;
+  clear: both
+}
+
+.clear2 {
+  clear: both
+}
+
+.clear:after, .clear2:after {
+  content: " ";
+  height: 0;
+  width: 0;
+  visibility: hidden;
+  display: block;
+  clear: both
+}
+
+.overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
+
+.middle {
+  display: table;
+  > div {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.height100 {
+  height: 100%;
+  width: 100%;
+}

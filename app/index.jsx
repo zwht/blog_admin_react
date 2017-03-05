@@ -7,11 +7,11 @@ import OtherRouter from './routers/other.jsx'
 const App = React.createClass({
     render: function () {
         return (
-            <div>
+            <div className="height100">
                 <div>
                     app
                 </div>
-                <div>
+                <div className="height100">
                     {this.props.children}
                 </div>
             </div>
