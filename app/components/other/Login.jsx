@@ -1,6 +1,5 @@
 import React from 'react';
 import './Login.less';
-import queryString from 'query-string';
 import session from '../../servers/session.jsx'
 
 import 'whatwg-fetch'
@@ -51,8 +50,8 @@ class Login extends React.Component {
         let _this = this;
         fetch("/rest/admin/login", {
             method: "POST",
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            body: queryString.stringify({
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
                 userName: _this.state.userName,
                 passWord: window.btoa(_this.state.passWord)
             })
@@ -60,13 +59,6 @@ class Login extends React.Component {
             .then(function (response) {
                 _this.savePassword();
             });
-    }
-
-    componentDidMount() {
-        //if(session.get('sess')){
-        //    this.setState({userName: (session.get('userName'))});
-        //    this.setState({passWord: (session.get('passWord'))});
-        //}
     }
 
     render() {
