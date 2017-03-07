@@ -1,16 +1,14 @@
 import React from 'react';
 import './addArticle.less';
-
-
 import 'whatwg-fetch'
 
 class AddArticle extends React.Component {
     constructor() {
         super();
         this.state = {
-            title: "344333",
-            content: "dsfjjdkdfkf",
-            userId: '58bc14dff989c031d5f50417'
+            title: "fuck",
+            content: "快手快脚风景快结束的九分裤，可就是打开房间，开始觉得减肥控件",
+            userId: '58bee08f0fc018094d67f7bd'
         };
     }
 

@@ -41,7 +41,7 @@ var config = {
         port: 9999,
         proxy: {
             '/rest': {
-                target: 'http://192.168.0.100:8888',
+                target: 'http://23.88.104.99:8888',
                 secure: true
             }
         }
