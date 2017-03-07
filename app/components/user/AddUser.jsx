@@ -1,6 +1,5 @@
 import React from 'react';
 import './AddUser.less';
-import queryString from 'query-string';
 
 import 'whatwg-fetch'
 
@@ -23,8 +22,8 @@ class AddUser extends React.Component {
         fetch("/rest/admin/addUser",
             {
                 method: "POST",
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                body: queryString.stringify(json)
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(json)
             })
             .then(function (response) {
 

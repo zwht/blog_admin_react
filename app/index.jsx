@@ -3,6 +3,8 @@ import {render} from 'react-dom'
 import {Router, Route, Link, hashHistory, IndexRedirect} from 'react-router'
 import OtherRouter from './routers/other.jsx'
 import UserRouter from './routers/user.jsx'
+import ArticleRouter from './routers/article.jsx'
+
 
 const App = React.createClass({
     render: function () {
@@ -17,6 +19,7 @@ const App = React.createClass({
 let routes =
     <Route path="/" component={App}>
         {UserRouter}
+        {ArticleRouter}
         {OtherRouter}
     </Route>;
 
