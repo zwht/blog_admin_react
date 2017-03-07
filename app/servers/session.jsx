@@ -132,12 +132,17 @@ function sessionProvider() {
      * @param {String} 键值
      */
     function deleteValue(name) {
-        if (!angular.isArray(name)) {
+        if (!isArray(name)) {
             name = [name];
         }
-        angular.forEach(name, function (v) {
-            deleteFn(v);
-        });
+        for (var i = 0; i < name.length; i++) {
+            deleteFn(name[i]);
+        }
+    }
+
+    function isArray(object) {
+        return object && typeof object === 'object' &&
+            Array == object.constructor;
     }
 
     /**

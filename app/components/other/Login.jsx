@@ -8,16 +8,13 @@ class Login extends React.Component {
     constructor() {
         super();
         this.state = {
-            userName: '',
+            userName: session.get('userName'),
             passWord: '',
             checked: false
         };
         if (session.get('sess')) {
-            this.state = {
-                userName: session.get('userName'),
-                passWord: window.atob(session.get('passWord')),
-                checked: true
-            };
+            this.state.passWord = window.atob(session.get('passWord'));
+            this.state.checked = true;
         }
 
         this.changeUser = this.changeUser.bind(this);
@@ -39,10 +36,13 @@ class Login extends React.Component {
     }
 
     savePassword() {
+        session.set('userName', this.state.userName);
         if (this.state.checked) {
             session.set('sess', true);
-            session.set('userName', this.state.userName);
             session.set('passWord', window.btoa(this.state.passWord))
+        } else {
+            session.remove('sess');
+            session.remove('passWord');
         }
     }
 
@@ -57,7 +57,11 @@ class Login extends React.Component {
             })
         })
             .then(function (response) {
-                _this.savePassword();
+                response.json().then(function (data) {
+                    if (data.key == 200) {
+                        _this.savePassword();
+                    }
+                });
             });
     }
 
