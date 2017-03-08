@@ -3,7 +3,8 @@ import './Login.less';
 import session from '../../servers/session.jsx'
 
 import 'whatwg-fetch'
-
+import {hashHistory} from 'react-router'
+import keydown from 'react-keydown'
 class Login extends React.Component {
     constructor() {
         super();
@@ -48,18 +49,20 @@ class Login extends React.Component {
 
     login() {
         let _this = this;
+        let jsonData = {
+            userName: _this.state.userName,
+            passWord: window.btoa(_this.state.passWord)
+        };
         fetch("/rest/admin/login", {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                userName: _this.state.userName,
-                passWord: window.btoa(_this.state.passWord)
-            })
+            body: JSON.stringify(jsonData)
         })
             .then(function (response) {
                 response.json().then(function (data) {
                     if (data.key == 200) {
                         _this.savePassword();
+                        hashHistory.push('/user/addUser');
                     }
                 });
             });
@@ -67,7 +70,7 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div className="Login">
+            <div className="Login" onKeyDown={("enter", this.login)}>
                 <div className="loginContent">
                     <div className="headImg"></div>
                     <div className="messBox">
