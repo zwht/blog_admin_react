@@ -1,7 +1,10 @@
 import React from 'react';
 import './addArticle.less';
 import 'whatwg-fetch'
+import wangeditor from "wangeditor";
+
 import session from '../../servers/session.jsx'
+
 class AddArticle extends React.Component {
     constructor() {
         super();
@@ -14,21 +17,27 @@ class AddArticle extends React.Component {
         };
         this.addArticle = this.addArticle.bind(this);
         this.changeTitle = this.changeTitle.bind(this);
-        this.changeContent = this.changeContent.bind(this);
         this.setNull = this.setNull.bind(this);
     }
 
-
     componentDidMount() {
 
+        this.initEditor();
+    }
+
+    initEditor() {
+        // 生成编辑器
+        var _this = this;
+        var editor = new wangeditor(this.refs.wangEditor);
+        editor.create();
+        editor.$txt.html(this.state.content);
+        editor.onchange = function () {
+            _this.setState({content: this.$txt.html()});
+        };
     }
 
     changeTitle(event) {
         this.setState({title: event.target.value})
-    }
-
-    changeContent(event) {
-        this.setState({content: event.target.value})
     }
 
     addArticle() {
@@ -71,24 +80,20 @@ class AddArticle extends React.Component {
         this.setState({tips1: ''});
         this.setState({tips2: ''});
     }
+
     render() {
         return (
             <div className="AddArticle">
-                <div className="messContent">
-                    <h2 className="title">添加文章</h2>
-                    <div className="mess">
-                        <label>标题:</label>
-                        <input type="text" className="inputText" onChange={this.changeTitle} value={this.state.title}/>
-                        <i className="tips">{this.state.tips1}</i>
-                    </div>
-                    <div className="mess">
-                        <label className="articleLabel">内容:</label>
-                        <textarea className="articleContent" onChange={this.changeContent}
-                                  value={this.state.content}></textarea>
-                        <i className="tips">{this.state.tips2}</i>
-                    </div>
-                    <div className="addBtn" onClick={this.addArticle}>提交</div>
+                <h2 className="title">添加文章</h2>
+                <div className="mess">
+                    <label>标题:</label>
+                    <input type="text" className="inputText" onChange={this.changeTitle} value={this.state.title}/>
+                    <i className="tips">{this.state.tips1}</i>
                 </div>
+                <div id="editor-container" class="container" ref="wangEditor">
+                    <div id="editor-trigger"><p>请输入内容</p></div>
+                </div>
+                <div className="addBtn" onClick={this.addArticle}>提交</div>
             </div>
         );
     }
