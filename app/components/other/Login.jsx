@@ -4,7 +4,8 @@ import session from '../../servers/session.jsx'
 
 import 'whatwg-fetch'
 import {hashHistory} from 'react-router'
-import keydown from 'react-keydown'
+
+
 class Login extends React.Component {
     constructor() {
         super();
@@ -22,6 +23,15 @@ class Login extends React.Component {
         this.changePwd = this.changePwd.bind(this);
         this.login = this.login.bind(this);
         this.remeber = this.remeber.bind(this);
+
+        var _this = this;
+        document.onkeydown = function (event) {
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            if (e && e.keyCode == 13) { // enter 键
+                _this.login();
+            }
+
+        };
     }
 
     changeUser(event) {
@@ -70,7 +80,7 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div className="Login" onKeyDown={("enter", this.login)}>
+            <div className="Login">
                 <div className="loginContent">
                     <div className="headImg"></div>
                     <div className="messBox">
@@ -85,7 +95,7 @@ class Login extends React.Component {
                                    onChange={this.changePwd} autocomplete="off" type="password"/>
                         </div>
                         <div className="setPwd clear">
-                            <div className={this.state.checked? 'pull-left checked active':'pull-left checked' }
+                            <div className={this.state.checked ? 'pull-left checked active' : 'pull-left checked' }
                                  onClick={this.remeber}>
                                 <span className="icon icon-ch"></span>
                                 <span className="icon icon-ch1"></span>
@@ -106,15 +116,9 @@ class Login extends React.Component {
 }
 
 let Enter = (nextState, replace) => {
-    /*if (!auth.isAdmin()) {
-     // Redirect to Home page if not an Admin
-     replace({ pathname: '/' })
-     }*/
-    //debugger
 };
 
 let Leave = () => {
-    //debugger
 };
 
 
