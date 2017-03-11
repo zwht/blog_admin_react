@@ -71,6 +71,7 @@ class Login extends React.Component {
                 response.json().then(function (data) {
                     if (data.key == 200) {
                         _this.savePassword();
+                        session.set('userId', data.data[0]._id);
                         hashHistory.push('/user/addUser');
                     }
                 });

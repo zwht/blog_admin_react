@@ -23,8 +23,25 @@ class AddArticle extends React.Component {
     componentDidMount() {
 
         this.initEditor();
+        this.getArticle();
+
     }
 
+    getArticle() {
+        fetch("/rest/admin/getArticle?userId=" + this.state.userId,
+            {
+                method: "GET"
+            })
+            .then(function (response) {
+                response.json().then(function (data) {
+                    if (data.key != 200) {
+
+                    } else {
+                        alert('success')
+                    }
+                })
+            });
+    }
     initEditor() {
         // 生成编辑器
         var _this = this;
