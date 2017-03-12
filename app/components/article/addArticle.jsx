@@ -28,33 +28,33 @@ class AddArticle extends React.Component {
     }
 
     getArticle() {
-        fetch("/rest/admin/getArticleList?userId=" + this.state.userId + "&token=" + session.get("token"),
-            {
-                method: "GET",
-                headers: {access_token: session.get("access_token")}
-            })
-            .then(function (response) {
-                response.json().then(function (data) {
-                    if (data.key != 200) {
-
-                    } else {
-                        alert('success')
-                    }
-                })
-            });
-        fetch("/rest/admin/getOneArticle?articleId=" + "articleId",
-            {
-                method: "GET"
-            })
-            .then(function (response) {
-                response.json().then(function (data) {
-                    if (data.key != 200) {
-
-                    } else {
-                        alert('success')
-                    }
-                })
-            });
+        //    fetch("/rest/admin/getArticleList?userId=" + this.state.userId + "&token=" + session.get("token"),
+        //        {
+        //            method: "GET",
+        //            headers: {access_token: session.get("access_token")}
+        //        })
+        //        .then(function (response) {
+        //            response.json().then(function (data) {
+        //                if (data.key != 200) {
+        //
+        //                } else {
+        //                    alert('success')
+        //                }
+        //            })
+        //        });
+        //    fetch("/rest/admin/getOneArticle?articleId=" + "articleId",
+        //        {
+        //            method: "GET"
+        //        })
+        //        .then(function (response) {
+        //            response.json().then(function (data) {
+        //                if (data.key != 200) {
+        //
+        //                } else {
+        //                    alert('success')
+        //                }
+        //            })
+        //        });
     }
     initEditor() {
         // 生成编辑器
