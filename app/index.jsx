@@ -1,6 +1,7 @@
 import React from 'react'
 import {render} from 'react-dom'
 import {Router, Route, Link, hashHistory, IndexRedirect} from 'react-router'
+import '../../servers/interceptFetch.jsx'
 import OtherRouter from './routers/other.jsx'
 import UserRouter from './routers/user.jsx'
 import ArticleRouter from './routers/article.jsx'

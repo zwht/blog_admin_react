@@ -1,54 +1,28 @@
-import {
-    FetchClient,
-    Interceptor
-} from 'intercept-fetch'
+import session from '../servers/session.jsx'
+import fetchIntercept from 'fetch-intercept';
 
-const fetchClient = new FetchClient();
-const interceptor = new Interceptor({
-    cors: {
-        id: 0,
-        request(url, config) {
-            debugger;
-            url += '&a=1';
-            config.mode = 'cors';
-            config.headers = {aa: 2344};
-            return Promise.resolve([url, config])
-        },
-        success(data) {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    console.log('res a', data);
-                    data.a = 'intercepta';
-                    resolve(data)
-                }, 1000)
-            })
-        }
+const unregister = fetchIntercept.register({
+    request: function (url, config) {
+        // Modify the url or config here
+        if (!config.headers) config.headers = {};
+        config.headers.access_token = session.get("access_token");
+        config.headers['Content-Type'] = 'application/json';
+        return [url, config];
     },
-    credentials: {
-        id: 1,
-        request(url, config) {
-            url += '&b=2';
-            config.credentials = 'include';
-            return Promise.resolve([url, config])
-        },
-        response(response) {
-            return Promise.resolve(error)
-        },
-        success(data) {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    console.log('res b', data);
-                    data.b = 'interceptb';
-                    resolve(data)
-                }, 1000)
-            })
-        },
-        error(error) {
-            return Promise.resolve(error)
-        }
+
+    requestError: function (error) {
+        // Called when an error occured during another 'request' interceptor call
+        return Promise.reject(error);
+    },
+
+    response: function (response) {
+        // Modify the reponse object
+        return response;
+    },
+
+    responseError: function (error) {
+        // Handle an fetch error
+        return Promise.reject(error);
     }
 });
-
-fetchClient.setInterceptors(interceptor);
-
-fetchClient.get('http://google.com');
+export default  unregister;
