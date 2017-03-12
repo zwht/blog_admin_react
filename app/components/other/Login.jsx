@@ -68,14 +68,15 @@ class Login extends React.Component {
             body: JSON.stringify(jsonData)
         })
             .then(function (response) {
-                response.json().then(function (data) {
-                    if (data.key == 200) {
-                        _this.savePassword();
-                        session.set('userId', data.data._id);
-                        hashHistory.push('/user/addUser');
-                        session.set('userId', data.data[0]._id);
-                    }
-                });
+                return response.json();
+            })
+            .then(function (json) {
+                if (json.key == 200) {
+                    _this.savePassword();
+                    session.set('userId', json.data._id);
+                    session.set('access_token', json.data.token);
+                    hashHistory.push('/article/addArticle');
+                }
             });
     }
 

@@ -28,9 +28,10 @@ class AddArticle extends React.Component {
     }
 
     getArticle() {
-        fetch("/rest/admin/getArticleList?userId=" + this.state.userId,
+        fetch("/rest/admin/getArticleList?userId=" + this.state.userId + "&token=" + session.get("token"),
             {
-                method: "GET"
+                method: "GET",
+                headers: {access_token: session.get("access_token")}
             })
             .then(function (response) {
                 response.json().then(function (data) {
