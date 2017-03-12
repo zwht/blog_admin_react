@@ -1,8 +1,6 @@
 import React from 'react';
 import './Login.less';
-import session from '../../servers/session.jsx'
-i;
-
+import session from '../../servers/session.jsx';
 import 'whatwg-fetch'
 import {hashHistory} from 'react-router'
 
