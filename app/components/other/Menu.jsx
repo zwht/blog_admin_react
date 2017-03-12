@@ -23,7 +23,6 @@ class Menu extends React.Component {
         return (
             <div className="Menu height100">
                 <div className="menuList">
-                    fuck
                 </div>
                 <div className="mainBox height100">
                     {this.props.children}

@@ -1,7 +1,7 @@
 import React from 'react';
 import './addArticle.less';
 import 'whatwg-fetch'
-//import wangeditor from "wangeditor";
+import wangeditor from "wangeditor";
 
 import session from '../../servers/session.jsx'
 
@@ -59,12 +59,13 @@ class AddArticle extends React.Component {
     initEditor() {
         // 生成编辑器
         var _this = this;
-        //var editor = new wangeditor(this.refs.wangEditor);
-        //editor.create();
-        //editor.$txt.html(this.state.content);
-        //editor.onchange = function () {
-        //    _this.setState({content: this.$txt.html()});
-        //};
+        var editor = new wangeditor(this.refs.wangEditor);
+        editor.create();
+        editor.$txt.html(this.state.content);
+        editor.onchange = function () {
+            _this.setState({content: this.$txt.formatText()});
+            document.getElementById("preview").innerHTML = document.getElementById("editor-container").innerHTML;
+        };
     }
 
     changeTitle(event) {
@@ -115,16 +116,22 @@ class AddArticle extends React.Component {
     render() {
         return (
             <div className="AddArticle">
-                <h2 className="title">添加文章</h2>
-                <div className="mess">
-                    <label>标题:</label>
-                    <input type="text" className="inputText" onChange={this.changeTitle} value={this.state.title}/>
-                    <i className="tips">{this.state.tips1}</i>
+                <div className="top">
+                    <h2 className="title">添加文章</h2>
+                    <div className="mess">
+                        <label>文章标题:</label>
+                        <input type="text" className="inputText" onChange={this.changeTitle} value={this.state.title}/>
+                        <i className="tips">{this.state.tips1}</i>
+                        <span className="addBtn" onClick={this.addArticle}>提交</span>
+                    </div>
                 </div>
-                <div id="editor-container" class="container" ref="wangEditor">
-                    <div id="editor-trigger"><p>请输入内容</p></div>
+                <div className="articleContent clear">
+                    <div id="editor-container" className="container pull-left" ref="wangEditor">
+                        <div id="editor-trigger"><p>请输入内容</p></div>
+                    </div>
+                    <div id="preview" className="preview pull-right">
+                    </div>
                 </div>
-                <div className="addBtn" onClick={this.addArticle}>提交</div>
             </div>
         );
     }
