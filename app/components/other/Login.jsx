@@ -73,6 +73,7 @@ class Login extends React.Component {
                         _this.savePassword();
                         session.set('userId', data.data._id);
                         hashHistory.push('/user/addUser');
+                        session.set('userId', data.data[0]._id);
                     }
                 });
             });

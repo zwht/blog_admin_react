@@ -73,7 +73,6 @@ class AddUser extends React.Component {
                         _this.setState({tips1: data.str})
                     } else {
                         _this.setNull();
-                        session.set('userId', data.data._id);
                         alert('success')
                     }
                 })

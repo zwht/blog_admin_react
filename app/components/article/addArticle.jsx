@@ -1,7 +1,7 @@
 import React from 'react';
 import './addArticle.less';
 import 'whatwg-fetch'
-import wangeditor from "wangeditor";
+//import wangeditor from "wangeditor";
 
 import session from '../../servers/session.jsx'
 
@@ -58,12 +58,12 @@ class AddArticle extends React.Component {
     initEditor() {
         // 生成编辑器
         var _this = this;
-        var editor = new wangeditor(this.refs.wangEditor);
-        editor.create();
-        editor.$txt.html(this.state.content);
-        editor.onchange = function () {
-            _this.setState({content: this.$txt.html()});
-        };
+        //var editor = new wangeditor(this.refs.wangEditor);
+        //editor.create();
+        //editor.$txt.html(this.state.content);
+        //editor.onchange = function () {
+        //    _this.setState({content: this.$txt.html()});
+        //};
     }
 
     changeTitle(event) {
