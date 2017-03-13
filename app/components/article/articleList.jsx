@@ -11,13 +11,26 @@ class ArticleList extends React.Component {
         super();
         this.state = {
             userId: session.get("userId"),
+            article: {content: "fuck you"},
             datas: []
         };
-        this.articleDetail = this.articleDetail.bind(this)
+        ///this.articleDetail = this.articleDetail.bind(this)
     }
 
-    articleDetail(id) {
-        console.log(id)
+    articleDetail(id, event) {
+        var that = this;
+        fetch("/rest/admin/getOneArticle?articleId=" + id,
+            {
+                method: "GET"
+            })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (json) {
+                if (json.key == 200) {
+                    that.setState({article: json.data})
+                }
+            });
     }
 
 
@@ -66,7 +79,7 @@ class ArticleList extends React.Component {
                     <div className="list pull-left">
                         <ul>
                             {this.state.datas.map(function (item) {
-                                return <li id={item._id} onClick={that.articleDetail(item._id)}>
+                                return <li id={item._id} onClick={this.articleDetail.bind(this, item._id)}>
                                     <a>
                                         <h3 className="articleTitle">{item.title}</h3>
                                         <div className="articleContent">
@@ -83,7 +96,8 @@ class ArticleList extends React.Component {
                     </div>
                     <div className="showList pull-right">
                         <span className="editIcon icon icon-add"></span>
-                        <div className="articleShow"></div>
+                        <div className="articleShow" dangerouslySetInnerHTML={{__html: this.state.article.content}}>
+                        </div>
                     </div>
                 </div>
             </div>

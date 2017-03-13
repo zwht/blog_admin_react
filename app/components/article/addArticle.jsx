@@ -63,7 +63,7 @@ class AddArticle extends React.Component {
         editor.create();
         editor.$txt.html(this.state.content);
         editor.onchange = function () {
-            _this.setState({content: this.$txt.formatText()});
+            _this.setState({content: this.$txt.html()});
             document.getElementById("preview").innerHTML = document.getElementById("editor-container").innerHTML;
         };
     }
