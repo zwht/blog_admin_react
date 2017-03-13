@@ -30,7 +30,6 @@ class Menu extends React.Component {
                     } else {
                         _this.setState({datas: data.data});
                         console.log(_this.state.datas);
-                        alert('success')
                     }
                 })
             });

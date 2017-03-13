@@ -1,0 +1,101 @@
+/**
+ * Created by myao on 17/3/13.
+ */
+@import "./../../assets/styles/common";
+
+.ArticleList {
+  .showPost {
+    height: 100%;
+    padding-top: 80px;
+  }
+  width: 100%;
+  height: 100%;
+  border-top: 1px solid lighten(@black, 80%);
+  background: #fff;
+  position: relative;
+  .topEdit {
+    position: relative;
+    padding-left: 10px;
+    padding-bottom: 30px;
+    labe {
+      font-size: 18px;
+      width: 95px;
+      display: inline-block;
+      color: lighten(@black, 40%);
+    }
+  }
+  .list {
+    width: 30%;
+    border-right: 1px solid lighten(@black, 80%);
+    height: 100%;
+    ul {
+      width: 100%;
+      overflow: auto;
+      li {
+        width: 100%;
+        border-bottom: 1px solid lighten(@black, 80%);
+        a {
+          display: block;
+          width: 100%;
+          padding: 19px 20px 22px 24px;
+          .articleTitle {
+            font-weight: normal;
+            font-size: 16px;
+          }
+          &:hover {
+            text-decoration: none;
+            cursor: pointer;
+          }
+          .articleContent {
+            margin-top: 15px;
+            img {
+              vertical-align: middle;
+              margin-right: 14px;
+              border-radius: 50%
+            }
+          }
+        }
+        &.active {
+          border-left: 2px solid @color-base2
+        }
+      }
+    }
+  }
+  .showList {
+    width: 70%;
+    position: relative;
+    .editIcon {
+      position: absolute;
+      right: 25px;
+      top: 15px;
+      font-size: 25px
+    }
+    .articleShow {
+      padding: 5%;
+      margin-top: 55px;
+    }
+  }
+  .top {
+    position: absolute;
+    padding: 20px 10px;
+    width: 100%;
+    left: 0;
+    top: 0;
+    border-bottom: 1px solid lighten(@black, 60%);
+    .addBtn {
+      display: block;
+      font-size: 20px;
+      color: lighten(@color-base1, 30%);
+      background: @color-base2;
+      height: 40px;
+      line-height: 40px;
+      width: 120px;
+      text-align: center;
+      cursor: pointer;
+      border-radius: 10px;
+      &:hover {
+        background: (lighten(@color-base2,5%))
+      }
+    }
+  }
+}

@@ -23,6 +23,7 @@
     "css-loader": "^0.26.1",
     "es6-promise": "^4.0.5",
     "extract-text-webpack-plugin": "^1.0.1",
+    "fetch-intercept": "^2.2.3",
     "file-loader": "^0.10.1",
     "gulp": "^3.9.1",
     "gulp-iconfont": "^8.0.1",
