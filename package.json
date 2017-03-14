@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack",
-    "start": "gulp && webpack-dev-server"
+    "start": "gulp && webpack-dev-server --open",
+    "go": "gulp && webpack-dev-server"
   },
   "dependencies": {
     "intercept-fetch": "^1.0.0",
