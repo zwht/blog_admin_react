@@ -127,7 +127,7 @@ class AddArticle extends React.Component {
                 </div>
                 <div className="articleContent clear">
                     <div id="editor-container" className="container pull-left" ref="wangEditor">
-                        <div id="editor-trigger"><p>请输入内容</p></div>
+                        <textarea></textarea>
                     </div>
                     <div id="preview" className="preview pull-right">
                     </div>

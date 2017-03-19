@@ -6,46 +6,44 @@ import './Menu.less';
 import queryString from 'query-string';
 import 'whatwg-fetch'
 import session from '../../servers/session.jsx'
+import {hashHistory} from 'react-router'
 
 class Menu extends React.Component {
     constructor() {
         super();
         this.state = {
-            userId: session.get("userId"),
-            datas: []
+            datas: [
+                {'text': 'new post', 'icons': 'icon-new', 'active': true, url: '/article/addArticle'},
+                {'text': 'content', 'icons': 'icon-content', 'active': false, url: '/article/articleList'},
+                {'text': 'userList', 'icons': 'icon-team', 'active': false, url: '/user/userList'}
+            ]
         };
     }
 
     componentDidMount() {
-        let _this = this;
-        fetch("/rest/admin/getArticleList?userId=" + this.state.userId,
-            {
-                method: "GET",
-                headers: {access_token: session.get("access_token")},
-            })
-            .then(function (response) {
-                response.json().then(function (data) {
-                    if (data.key != 200) {
-                        alert(data.str)
-                    } else {
-                        _this.setState({datas: data.data});
-                        console.log(_this.state.datas);
-                    }
-                })
-            });
+    }
+
+    goto(item) {
+        hashHistory.push(item.url);
+        for (var i = 0; i < this.state.datas.length; i++) {
+            this.state.datas[i].active = false;
+        }
+        item.active = true
     }
 
     render() {
-        var items = [];
-        for (var i = 0; i < this.state.datas.length; i++) {
-            items.push(<li id={this.state.datas[i]._id}><a>{this.state.datas[i].title}</a></li>)
-        }
         return (
             <div className="Menu height100">
                 <div className="menuList">
                     <div className="logo"></div>
-                    <ul>
-                        {items}
+                    <ul class="ulList">
+                        {this.state.datas.map(function (item) {
+                            return <li onClick={this.goto.bind(this,item)}
+                                       className={item.active?'active':''}>
+                                <i className={'icon '+item.icons}></i>
+                                {item.text}
+                            </li>
+                        }.bind(this))}
                     </ul>
                 </div>
                 <div className="mainBox height100">

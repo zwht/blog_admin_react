@@ -11,7 +11,7 @@ class ArticleList extends React.Component {
         super();
         this.state = {
             userId: session.get("userId"),
-            article: {content: "fuck you"},
+            article: {content: ""},
             datas: []
         };
         ///this.articleDetail = this.articleDetail.bind(this)
@@ -55,10 +55,9 @@ class ArticleList extends React.Component {
 
 
     render() {
-        var that = this;
         //var items = [];
         //for (var i = 0; i<this.state.datas.length;i++) {
-        //    items.push( <li id={this.state.datas[i]._id} onClick={this.articleDetail(this.state.datas[i]._id)}>
+        //    items.push( <li id={this.state.datas[i]._id} onClick={this.articleDetail(this.state.datas[i]._id, this)}>
         //        <a>
         //            <h3 className="articleTitle">{this.state.datas[i].title}</h3>
         //            <div className="articleContent">
@@ -73,7 +72,7 @@ class ArticleList extends React.Component {
         return (
             <div className="ArticleList">
                 <div className="top">
-                    <span className="addBtn">新建帖子</span>
+                    <span className="addBtn">新建文章</span>
                 </div>
                 <div className="showPost clear">
                     <div className="list pull-left">
