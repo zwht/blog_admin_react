@@ -30,8 +30,8 @@ var config = {
     },
     output: {
         path: path.resolve(__dirname, './build'),
-        filename: '/assets/js/bundle.js',
-        publicPath: "http://127.0.0.1:8889/"
+        filename: 'assets/js/bundle.js',
+        publicPath: "http://127.0.0.1:9999/"
     },
 
     devServer: {
