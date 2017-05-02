@@ -58,8 +58,8 @@ class Login extends React.Component {
     login() {
         let _this = this;
         let jsonData = {
-            userName: _this.state.userName,
-            passWord: window.btoa(_this.state.passWord)
+            username: _this.state.userName,
+            password: window.btoa(_this.state.passWord)
         };
         fetch("/rest/admin/login", {
             method: "POST",

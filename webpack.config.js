@@ -42,7 +42,7 @@ var config = {
         proxy: {
             '/rest': {
                 //target: 'http://23.88.104.99:8888',
-                target: 'http://127.0.0.1:8888',
+                target: 'http://127.0.0.1:10000',
                 secure: true
             }
         }
